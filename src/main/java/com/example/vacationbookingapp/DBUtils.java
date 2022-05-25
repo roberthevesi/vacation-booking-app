@@ -13,8 +13,13 @@ import java.sql.*;
 import java.util.regex.Pattern;
 
 public class DBUtils {
-    public static Stage stage;
     private static UserSession userSession = UserSession.getInstance();
+
+    private static OfferSession offerSession = OfferSession.getInstance();
+
+    static final String DOUBLE_QUOTES = "\"";
+    public static Stage stage;
+
 
     public static void changeScene(ActionEvent event, String fxmlFile, String title){
         Parent root = null;
@@ -158,6 +163,73 @@ public class DBUtils {
             if(preparedStatement != null){
                 try{
                     preparedStatement.close();
+                }
+                catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(connection != null){
+                try{
+                    connection.close();
+                }
+                catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void addOffer(ActionEvent event, String title, String price, String location, String startDate, String endDate, String description){
+        Connection connection = null;
+        PreparedStatement psInsert = null;
+        PreparedStatement psCheckUserExists = null;
+        ResultSet resultSet = null;
+
+        try{
+            connection = DriverManager.getConnection("jdbc:mysql://co-project-db.mysql.database.azure.com:3306/sefprojectdb", "robert@co-project-db", "SantJmek1337!");
+            psCheckUserExists = connection.prepareStatement("SELECT * from offers WHERE title = ?");
+            psCheckUserExists.setString(1, title);
+            resultSet = psCheckUserExists.executeQuery();
+
+            // title already taken
+            if(resultSet.isBeforeFirst()){
+                System.out.println("Offer already exists!");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("You cannot use this title.");
+                alert.show();
+            }else{
+                psInsert = connection.prepareStatement("INSERT INTO offers (title, price, location, startDate, endDate, description) VALUES (?, ?, ?, ?, ?, ?);");
+                psInsert.setString(1, title);
+                psInsert.setString(2, price);
+                psInsert.setString(3, location);
+                psInsert.setString(4, startDate);
+                psInsert.setString(5, endDate);
+                psInsert.setString(6, description);
+                psInsert.executeUpdate();
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        } finally{
+            if(resultSet != null){
+                try{
+                    resultSet.close();
+                }
+                catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(psCheckUserExists != null){
+                try{
+                    psCheckUserExists.close();
+                }
+                catch(SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if(psInsert != null){
+                try{
+                    psInsert.close();
                 }
                 catch(SQLException e){
                     e.printStackTrace();
