@@ -1,7 +1,7 @@
 package com.example.vacationbookingapp.controllers;
 
-import com.example.login.DBUtils;
-import com.example.login.models.AgentModel;
+import com.example.vacationbookingapp.DBUtils;
+import com.example.vacationbookingapp.models.AgentModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
