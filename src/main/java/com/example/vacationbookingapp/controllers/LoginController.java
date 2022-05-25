@@ -1,4 +1,5 @@
 package com.example.vacationbookingapp.controllers;
+
 import com.example.vacationbookingapp.DBUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -40,7 +41,7 @@ public class LoginController implements Initializable {
         signupButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                DBUtils.changeScene(actionEvent, "/com/example/login/signup.fxml", "Sign up");
+                DBUtils.changeScene(actionEvent, "/com/example/vacationbookingapp/signup.fxml", "Sign up");
             }
         });
 

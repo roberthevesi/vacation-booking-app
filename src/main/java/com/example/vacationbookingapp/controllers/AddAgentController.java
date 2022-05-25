@@ -76,7 +76,7 @@ public class AddAgentController implements Initializable {
                     }
                     else{
                         DBUtils.signupUser(actionEvent, firstName.getText(), lastName.getText(), phoneNumber.getText(), emailAddress.getText(), password.getText(), "agent");
-                        DBUtils.changeScene(actionEvent, "/com/example/login/adminHomepage.fxml", "Admin Homepage");
+                        DBUtils.changeScene(actionEvent, "/com/example/vacationbookingapp/adminHomepage.fxml", "Admin Homepage");
                     }
                 }
                 else if( // passwords don't match
