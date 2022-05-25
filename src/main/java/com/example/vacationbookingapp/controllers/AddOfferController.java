@@ -76,7 +76,7 @@ public class AddOfferController implements Initializable {
                     }
                     else{
                         DBUtils.addOffer(actionEvent, title.getText(), price.getText(), location.getText(), startDate.getValue().toString(), endDate.getValue().toString(), description.getText());
-                        DBUtils.changeScene(actionEvent, "/com/example/login/homepage.fxml", "Homepage");
+                        DBUtils.changeScene(actionEvent, "/com/example/vacationbookingapp/homepage.fxml", "Homepage");
                     }
                 }
                 else

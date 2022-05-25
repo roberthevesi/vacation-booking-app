@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.AmbientLight?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vacationbookingapp.controllers.MyBookingsController">
+   <children>
+      <AnchorPane prefHeight="720.0" prefWidth="363.0" style="-fx-background-color: #74ddff;">
+         <children>
+            <ImageView fitHeight="344.0" fitWidth="344.0" layoutX="9.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../media/logo.png" />
+               </image>
+            </ImageView>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="41.0" layoutY="487.0" prefHeight="72.0" prefWidth="283.0" text="Vacation" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Arial Bold" size="63.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+            </Label>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="41.0" layoutY="560.0" prefHeight="72.0" prefWidth="283.0" text="Booking" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Arial Bold" size="63.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane maxWidth="919.0" minWidth="919.0" prefHeight="720.0" prefWidth="919.0">
+         <children>
+            <ImageView fitHeight="720.0" fitWidth="962.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../media/bg.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="logoutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="800.0" layoutY="669.0" mnemonicParsing="false" text="Log out" textFill="#970000">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="181.0" layoutY="14.0" prefHeight="64.0" prefWidth="556.0" text="My Bookings" textAlignment="CENTER" textFill="#3e95b1" textOverrun="CLIP">
+               <font>
+                  <Font name="Arial Bold" size="55.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+            </Label>
+            <TableView fx:id="table" layoutX="15.0" layoutY="99.0" prefHeight="543.0" prefWidth="885.0">
+              <columns>
+                <TableColumn fx:id="titleCol" prefWidth="290.0" text="TITLE" />
+                <TableColumn fx:id="locationCol" minWidth="0.0" prefWidth="173.0" text="LOCATION" />
+                  <TableColumn fx:id="startDateCol" prefWidth="102.0" text="START DATE" />
+                  <TableColumn fx:id="endDateCol" prefWidth="82.0" text="END DATE" />
+                  <TableColumn fx:id="priceCol" prefWidth="71.0" text="PRICE" />
+                  <TableColumn fx:id="ratingCol" prefWidth="58.0" text="RATING" />
+                  <TableColumn fx:id="statusCol" prefWidth="108.0" text="STATUS" />
+              </columns>
+            </TableView>
+            <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="669.0" mnemonicParsing="false" text="Back" textFill="#296475">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+               <graphic>
+                  <AmbientLight color="CHARTREUSE" lightOn="true" />
+               </graphic>
+            </Button>
+            <Button fx:id="giveFeedbackButton" alignment="CENTER" contentDisplay="CENTER" layoutX="389.0" layoutY="669.0" mnemonicParsing="false" text="Give Rating" textFill="#296475">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+               <graphic>
+                  <AmbientLight color="CHARTREUSE" lightOn="true" />
+               </graphic>
+            </Button>
+            <Pane fx:id="ratingPane" layoutX="194.0" layoutY="217.0" visible="false">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="720.0" layoutX="-194.0" layoutY="-217.0" opacity="0.36" stroke="BLACK" strokeType="INSIDE" width="928.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4f9ff" height="215.0" layoutX="90.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE" width="344.0" />
+                  <Text fill="#5e5e5e" layoutX="105.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give feedback" wrappingWidth="313.21630859375">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Text>
+                  <Slider fx:id="ratingSlider" blockIncrement="1.0" layoutX="121.0" layoutY="111.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" prefHeight="53.0" prefWidth="283.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0" />
+                  <Button fx:id="submitButton" layoutX="249.0" layoutY="196.0" mnemonicParsing="false" text="Submit">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="cancelButton" layoutX="340.0" layoutY="196.0" mnemonicParsing="false" text="Cancel">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

@@ -188,8 +188,6 @@ public class HomepageController implements Initializable {
         }
     }
 
-
-
     public void refreshTable(){
         try {
             OfferList.clear();

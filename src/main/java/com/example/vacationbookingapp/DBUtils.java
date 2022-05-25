@@ -131,13 +131,13 @@ public class DBUtils {
                         userSession.userid = retrievedID;
 
                         if(retrievedRole.equals("admin")){
-                            changeScene(event, "/com/example/login/adminHomepage.fxml", "Welcome Admin");
+                            changeScene(event, "/com/example/vacationbookingapp/adminHomepage.fxml", "Welcome Admin");
                         }
                         else if(retrievedRole.equals("agent")){
-                            changeScene(event, "/com/example/login/homepage.fxml", "Welcome Agent");
+                            changeScene(event, "/com/example/vacationbookingapp/homepage.fxml", "Welcome Agent");
                         }
                         else if(retrievedRole.equals("user")){
-                            changeScene(event, "/com/example/login/homepage.fxml", "Welcome");
+                            changeScene(event, "/com/example/vacationbookingapp/homepage.fxml", "Welcome");
                         }
                     }else{
                         System.out.println("Passwords did not match.");
@@ -271,19 +271,7 @@ public class DBUtils {
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.executeUpdate();
     }
-
-    public static void changeRequestStatus(ActionEvent event, Integer bookingid, String status) throws SQLException{
-        String query = null;
-        Connection connection = null;
-        ResultSet resultSet = null;
-        PreparedStatement preparedStatement = null;
-
-        query = "UPDATE bookings SET status = " + DOUBLE_QUOTES + status + DOUBLE_QUOTES + " WHERE bookingid = " + bookingid;
-        connection = DriverManager.getConnection("jdbc:mysql://co-project-db.mysql.database.azure.com:3306/sefprojectdb", "robert@co-project-db", "SantJmek1337!");
-        preparedStatement = connection.prepareStatement(query);
-        preparedStatement.executeUpdate();
-    }
-
+  
     public static void addBooking(ActionEvent event, Integer offerid, Integer userid, String status){
         Connection connection = null;
         PreparedStatement psInsert = null;

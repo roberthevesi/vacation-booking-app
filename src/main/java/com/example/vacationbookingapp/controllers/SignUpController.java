@@ -72,7 +72,7 @@ public class SignUpController implements Initializable {
                     }
                     else{
                         DBUtils.signupUser(actionEvent, firstName.getText(), lastName.getText(), phoneNumber.getText(), emailAddress.getText(), password.getText(), "user");
-                        DBUtils.changeScene(actionEvent, "/com/example/login/adminHomepage.fxml", "Admin Homepage");
+                        DBUtils.changeScene(actionEvent, "/com/example/vacationbookingapp/homepage.fxml", "Homepage");
                     }
                 }
                 else if( // passwords don't match
