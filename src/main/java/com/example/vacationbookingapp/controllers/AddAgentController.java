@@ -1,6 +1,6 @@
 package com.example.vacationbookingapp.controllers;
 
-import com.example.login.DBUtils;
+import com.example.vacationbookingapp.DBUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
