@@ -219,23 +219,23 @@ public class RequestsController implements Initializable {
                 }
 
                 for(int i=0; i<RequestsList.size(); i++){
-                        int currOfferid = RequestsList.get(i).getOfferid();
-                        for(int j=0; j<newOfferidList.size(); j++){
-                            if(newOfferidList.get(j) == currOfferid){
-                                RequestsList.set(i, new RequestModel(
-                                        RequestsList.get(i).getBookingid(),
-                                        RequestsList.get(i).getOfferid(),
-                                        RequestsList.get(i).getUserid(),
-                                        titleList.get(j),
-                                        startDateList.get(j),
-                                        endDateList.get(j),
-                                        priceList.get(j),
-                                        null,
-                                        null,
-                                        RequestsList.get(i).getStatus()
-                                ));
-                            }
+                    int currOfferid = RequestsList.get(i).getOfferid();
+                    for(int j=0; j<newOfferidList.size(); j++){
+                        if(newOfferidList.get(j) == currOfferid){
+                            RequestsList.set(i, new RequestModel(
+                                    RequestsList.get(i).getBookingid(),
+                                    RequestsList.get(i).getOfferid(),
+                                    RequestsList.get(i).getUserid(),
+                                    titleList.get(j),
+                                    startDateList.get(j),
+                                    endDateList.get(j),
+                                    priceList.get(j),
+                                    null,
+                                    null,
+                                    RequestsList.get(i).getStatus()
+                            ));
                         }
+                    }
                 }
 
                 query = "SELECT * FROM users";

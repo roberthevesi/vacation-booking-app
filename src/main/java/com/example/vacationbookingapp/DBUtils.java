@@ -1,5 +1,7 @@
 package com.example.vacationbookingapp;
 
+import com.example.vacationbookingapp.OfferSession;
+import com.example.vacationbookingapp.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -38,7 +40,7 @@ public class DBUtils {
 
     public static void signupUser(ActionEvent event, String firstName, String lastName, String phoneNumber, String emailAddress, String password, String role){
         Connection connection = null;
-        PreparedStatement psInsert = null;
+        PreparedStatement preparedStatement = null;
         PreparedStatement psCheckUserExists = null;
         ResultSet resultSet = null;
 
@@ -55,16 +57,24 @@ public class DBUtils {
                 alert.setContentText("You cannot use this username.");
                 alert.show();
             }else{
-                psInsert = connection.prepareStatement("INSERT INTO users (firstName, lastName, phoneNumber, emailAddress, password, role) VALUES (?, ?, ?, ?, ?, ?);");
-                psInsert.setString(1, firstName);
-                psInsert.setString(2, lastName);
-                psInsert.setString(3, phoneNumber);
-                psInsert.setString(4, emailAddress);
-                psInsert.setString(5, password);
-                psInsert.setString(6, role);
-                psInsert.executeUpdate();
+                preparedStatement = connection.prepareStatement("INSERT INTO users (firstName, lastName, phoneNumber, emailAddress, password, role) VALUES (?, ?, ?, ?, ?, ?);");
+                preparedStatement.setString(1, firstName);
+                preparedStatement.setString(2, lastName);
+                preparedStatement.setString(3, phoneNumber);
+                preparedStatement.setString(4, emailAddress);
+                preparedStatement.setString(5, password);
+                preparedStatement.setString(6, role);
+                preparedStatement.executeUpdate();
 
+                connection = DriverManager.getConnection("jdbc:mysql://co-project-db.mysql.database.azure.com:3306/sefprojectdb", "robert@co-project-db", "SantJmek1337!");
+                preparedStatement = connection.prepareStatement("SELECT role, userid FROM users WHERE emailAddress = ?");
+                preparedStatement.setString(1, emailAddress);
+                resultSet = preparedStatement.executeQuery();
 
+                if(resultSet.next()){
+                    userSession.role = resultSet.getString("role");
+                    userSession.userid = resultSet.getInt("userid");
+                }
             }
         }
         catch(SQLException e){
@@ -86,9 +96,9 @@ public class DBUtils {
                     e.printStackTrace();
                 }
             }
-            if(psInsert != null){
+            if(preparedStatement != null){
                 try{
-                    psInsert.close();
+                    preparedStatement.close();
                 }
                 catch(SQLException e){
                     e.printStackTrace();
@@ -271,7 +281,7 @@ public class DBUtils {
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.executeUpdate();
     }
-  
+
     public static void addBooking(ActionEvent event, Integer offerid, Integer userid, String status){
         Connection connection = null;
         PreparedStatement psInsert = null;
@@ -306,6 +316,18 @@ public class DBUtils {
                 }
             }
         }
+    }
+
+    public static void changeRequestStatus(ActionEvent event, Integer bookingid, String status) throws SQLException{
+        String query = null;
+        Connection connection = null;
+        ResultSet resultSet = null;
+        PreparedStatement preparedStatement = null;
+
+        query = "UPDATE bookings SET status = " + DOUBLE_QUOTES + status + DOUBLE_QUOTES + " WHERE bookingid = " + bookingid;
+        connection = DriverManager.getConnection("jdbc:mysql://co-project-db.mysql.database.azure.com:3306/sefprojectdb", "robert@co-project-db", "SantJmek1337!");
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.executeUpdate();
     }
 
     public static boolean isValidEmail(String emailAddress){

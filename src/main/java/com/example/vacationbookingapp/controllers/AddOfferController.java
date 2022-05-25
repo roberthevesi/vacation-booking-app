@@ -61,12 +61,12 @@ public class AddOfferController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 if( // all fields are filled
-                    !title.getText().trim().isEmpty() &&
-                    !price.getText().trim().isEmpty() &&
-                    !location.getText().trim().isEmpty() &&
-                    startDate.getValue() != null &&
-                    endDate.getValue() != null &&
-                    !description.getText().trim().isEmpty())
+                        !title.getText().trim().isEmpty() &&
+                                !price.getText().trim().isEmpty() &&
+                                !location.getText().trim().isEmpty() &&
+                                startDate.getValue() != null &&
+                                endDate.getValue() != null &&
+                                !description.getText().trim().isEmpty())
                 {
                     if(!DBUtils.isValidName(location.getText())){
                         System.out.println("Invalid location.");

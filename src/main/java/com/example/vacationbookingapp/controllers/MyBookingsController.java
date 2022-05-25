@@ -229,9 +229,9 @@ public class MyBookingsController implements Initializable {
 
             while(resultSet.next()){
                 auxOfferList.add(new AuxOfferModel(
-                        resultSet.getInt("offerid"),
-                        resultSet.getInt("rating"),
-                        resultSet.getString("status")
+                                resultSet.getInt("offerid"),
+                                resultSet.getInt("rating"),
+                                resultSet.getString("status")
                         )
                 );
             }

@@ -44,13 +44,13 @@ public class SignUpController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 if( // all good
-                    !firstName.getText().trim().isEmpty() &&
-                    !lastName.getText().trim().isEmpty() &&
-                    !phoneNumber.getText().trim().isEmpty() &&
-                    !emailAddress.getText().trim().isEmpty() &&
-                    !password.getText().trim().isEmpty() &&
-                    !confirmPassword.getText().trim().isEmpty() &&
-                    password.getText().compareTo(confirmPassword.getText()) == 0)
+                        !firstName.getText().trim().isEmpty() &&
+                                !lastName.getText().trim().isEmpty() &&
+                                !phoneNumber.getText().trim().isEmpty() &&
+                                !emailAddress.getText().trim().isEmpty() &&
+                                !password.getText().trim().isEmpty() &&
+                                !confirmPassword.getText().trim().isEmpty() &&
+                                password.getText().compareTo(confirmPassword.getText()) == 0)
                 {
                     if(!DBUtils.isValidName(firstName.getText()) || !DBUtils.isValidName(lastName.getText())){
                         System.out.println("Invalid name.");
@@ -72,22 +72,22 @@ public class SignUpController implements Initializable {
                     }
                     else{
                         DBUtils.signupUser(actionEvent, firstName.getText(), lastName.getText(), phoneNumber.getText(), emailAddress.getText(), password.getText(), "user");
-                        DBUtils.changeScene(actionEvent, "/com/example/vacationbookingapp/homepage.fxml", "Homepage");
+                        DBUtils.changeScene(actionEvent, "homepage.fxml", "Admin Homepage");
                     }
                 }
                 else if( // passwords don't match
-                    !firstName.getText().trim().isEmpty() &&
-                    !lastName.getText().trim().isEmpty() &&
-                    !phoneNumber.getText().trim().isEmpty() &&
-                    !emailAddress.getText().trim().isEmpty() &&
-                    !password.getText().trim().isEmpty() &&
-                    !confirmPassword.getText().trim().isEmpty() &&
-                    password.getText().compareTo(confirmPassword.getText()) != 0)
+                        !firstName.getText().trim().isEmpty() &&
+                                !lastName.getText().trim().isEmpty() &&
+                                !phoneNumber.getText().trim().isEmpty() &&
+                                !emailAddress.getText().trim().isEmpty() &&
+                                !password.getText().trim().isEmpty() &&
+                                !confirmPassword.getText().trim().isEmpty() &&
+                                password.getText().compareTo(confirmPassword.getText()) != 0)
                 {
-                        System.out.println("Passwords don't match.");
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText("Passwords don't match.");
-                        alert.show();
+                    System.out.println("Passwords don't match.");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Passwords don't match.");
+                    alert.show();
                 }
                 else
                 { // not good :(

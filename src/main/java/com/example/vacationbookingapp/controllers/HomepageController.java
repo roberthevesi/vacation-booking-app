@@ -198,14 +198,14 @@ public class HomepageController implements Initializable {
 
             while (resultSet.next()) {
                 OfferList.add(new OfferModel(
-                    resultSet.getInt("offerid"),
-                    resultSet.getString("title"),
-                    resultSet.getString("price"),
-                    resultSet.getString("location"),
-                    resultSet.getString("startDate"),
-                    resultSet.getString("endDate"),
-                    resultSet.getString("description"),
-                    null,
+                        resultSet.getInt("offerid"),
+                        resultSet.getString("title"),
+                        resultSet.getString("price"),
+                        resultSet.getString("location"),
+                        resultSet.getString("startDate"),
+                        resultSet.getString("endDate"),
+                        resultSet.getString("description"),
+                        null,
                         null));
                 table.setItems(OfferList);
             }
